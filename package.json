@@ -1,0 +1,8 @@
+{
+  "name": "deal-no-deal-scoreboard",
+  "version": "1.0.0",
+  "description": "Browser-based Deal or No Deal scoreboard for projection",
+  "scripts": {
+    "start": "npx serve . -l 3000"
+  }
+}
