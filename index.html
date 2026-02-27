@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal or No Deal Scoreboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Folder Selection Modal (shown at startup) -->
+  <div id="folder-modal" class="modal active">
+    <div class="modal-content">
+      <h2>Select Game Set</h2>
+      <p>Choose folder 1–9 to load images:</p>
+      <div class="folder-buttons">
+        <button data-folder="1">1</button>
+        <button data-folder="2">2</button>
+        <button data-folder="3">3</button>
+        <button data-folder="4">4</button>
+        <button data-folder="5">5</button>
+        <button data-folder="6">6</button>
+        <button data-folder="7">7</button>
+        <button data-folder="8">8</button>
+        <button data-folder="9">9</button>
+      </div>
+      <p class="hint">Place 10 .jpg files (01.jpg–10.jpg) in each folder under game-assets/</p>
+    </div>
+  </div>
+
+  <!-- Main Game Board -->
+  <div id="game-board" class="hidden">
+    <!-- Top Row: 5 cards -->
+    <div class="card-row">
+      <div class="card" data-index="0">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+      <div class="card" data-index="1">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+      <div class="card" data-index="2">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+      <div class="card" data-index="3">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+      <div class="card" data-index="4">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scoreboard -->
+    <div class="scoreboard">
+      <span>ROUND: <strong id="round-display">1</strong></span>
+      <span>CASES LEFT: <strong id="cases-display">3</strong></span>
+    </div>
+
+    <!-- Bottom Row: 5 cards -->
+    <div class="card-row">
+      <div class="card" data-index="5">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+      <div class="card" data-index="6">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+      <div class="card" data-index="7">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+      <div class="card" data-index="8">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+      <div class="card" data-index="9">
+        <div class="card-inner">
+          <div class="card-front"></div>
+          <div class="card-back"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Round Over / Deal Overlay (covers board but not averages) -->
+    <div id="overlay" class="overlay hidden">
+      <img id="overlay-image" src="" alt="">
+    </div>
+  </div>
+
+  <!-- Bottom Averages (always visible) -->
+  <div id="averages-bar">
+    <span>AVERAGE: <strong id="average-display">$0</strong></span>
+    <span>75% AVERAGE: <strong id="avg75-display">$0</strong></span>
+  </div>
+
+  <!-- DEAL / NO DEAL prompt (between rounds) -->
+  <div id="deal-prompt" class="deal-prompt hidden">
+    <p>DEAL or NO DEAL?</p>
+    <p><kbd>Space</kbd> = NO DEAL (continue) &nbsp; <kbd>D</kbd> = DEAL (end game)</p>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
