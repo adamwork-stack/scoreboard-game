@@ -51,26 +51,38 @@ async function selectFolder(num) {
   updateUI();
 }
 
+const PLACEHOLDER_BASE = 'https://picsum.photos/seed';
+const PLACEHOLDER_IDS = ['briefcase', 'case', 'box', 'prize', 'vault', 'treasure', 'reward', 'bonus', 'jackpot', 'win'];
+
 async function loadImages(folderNum) {
   const base = `game-assets/${folderNum}`;
   const cards = $$('.card');
 
   const loads = cards.map((card, i) => {
     const idx = String(i + 1).padStart(2, '0');
-    const src = `${base}/${idx}.jpg`;
+    const customSrc = `${base}/${idx}.jpg`;
+    const fallbackSrc = `${PLACEHOLDER_BASE}/${PLACEHOLDER_IDS[i]}-${folderNum}/300/400`;
     const front = card.querySelector('.card-front');
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
-        front.style.backgroundImage = `url(${src})`;
+        front.style.backgroundImage = `url(${customSrc})`;
         resolve();
       };
       img.onerror = () => {
-        front.style.backgroundImage = 'none';
-        front.style.backgroundColor = '#2a1a1a';
-        resolve();
+        const fallback = new Image();
+        fallback.onload = () => {
+          front.style.backgroundImage = `url(${fallbackSrc})`;
+          resolve();
+        };
+        fallback.onerror = () => {
+          front.style.backgroundImage = 'none';
+          front.style.backgroundColor = '#2a1a1a';
+          resolve();
+        };
+        fallback.src = fallbackSrc;
       };
-      img.src = src;
+      img.src = customSrc;
     });
   });
 
